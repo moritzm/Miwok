@@ -17,28 +17,28 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
 
 
-    ArrayList<Word> words = new ArrayList<>();
     public WordAdapter(Context context, ArrayList<Word> list) {
         super(context, 0, list);
-        words.addAll(list);
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Word word = getItem(position);
+
         View view = convertView;
 
-        if(view == null) {
+        if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
 
         TextView defaultText = (TextView) view.findViewById(R.id.default_text_View);
-        defaultText.setText(words.get(position).getDefaultTranslation());
+        defaultText.setText(word.getDefaultTranslation());
 
         TextView miwokText = (TextView) view.findViewById(R.id.miwok_text_view);
-        miwokText.setText(words.get(position).getMiwokTranslation());
+        miwokText.setText(word.getMiwokTranslation());
 
         return view;
     }
