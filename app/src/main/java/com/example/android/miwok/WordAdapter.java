@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,11 +35,18 @@ public class WordAdapter extends ArrayAdapter<Word> {
                     R.layout.list_item, parent, false);
         }
 
-        TextView defaultText = (TextView) view.findViewById(R.id.default_text_View);
+        TextView defaultText = (TextView) view.findViewById(R.id.default_text_view);
         defaultText.setText(word.getDefaultTranslation());
 
         TextView miwokText = (TextView) view.findViewById(R.id.miwok_text_view);
         miwokText.setText(word.getMiwokTranslation());
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        if(word.getImageResourceId() != 0) {
+            imageView.setImageResource(word.getImageResourceId());
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
 
         return view;
     }
